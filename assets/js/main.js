@@ -744,3 +744,65 @@ var main = (function($) { var _ = {
 	},
 
 }; return _; })(jQuery); main.init();
+
+// Overlay controller: open specific section and slide panel
+(function($){
+	var $overlay = $('#viewer-overlay'),
+		$inner = $overlay.find('.overlay-inner'),
+		$close = $('#viewer-overlay-close');
+
+	function openOverlay(name) {
+		// Hide all sections, show only the requested one
+		$inner.children('section').hide();
+		$inner.find('#' + name + '-overlay').show();
+		$overlay.addClass('open').attr('aria-hidden','false');
+		// move focus to overlay close for accessibility
+		$close.focus();
+	}
+
+	function closeOverlay() {
+		$overlay.removeClass('open').attr('aria-hidden','true');
+	}
+
+	// Header nav clicks
+	$('#header').on('click', 'nav a', function(e){
+		var href = $(this).attr('href') || '';
+		if (href.indexOf('#') === 0) {
+			var name = href.substring(1);
+			// Only handle known sections
+			if (name === 'about' || name === 'services' || name === 'contact') {
+				e.preventDefault();
+				openOverlay(name);
+			}
+		}
+	});
+
+	// Close button
+	$close.on('click', function(){ closeOverlay(); });
+
+	// Click outside inner to close
+	$overlay.on('click', function(e){
+		if ($(e.target).is($overlay)) {
+			closeOverlay();
+		}
+	});
+
+	// Stop propagation when clicking inside inner
+	$inner.on('click', function(e){ e.stopPropagation(); });
+
+	// ESC to close
+	$(document).on('keydown', function(e){
+		if (e.key === 'Escape' || e.keyCode === 27) {
+			if ($overlay.hasClass('open')) {
+				closeOverlay();
+			}
+		}
+	});
+
+	// Close overlay when the main sidebar toggle is clicked (slide overlay out)
+	$(document).on('click', '.toggle', function(){
+		if ($overlay.hasClass('open')) {
+			closeOverlay();
+		}
+	});
+})(jQuery);

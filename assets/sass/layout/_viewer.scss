@@ -265,3 +265,76 @@
 			}
 		}
 	}
+
+/* Viewer overlay (fixed inset so background image remains visible around it) */
+#viewer-overlay {
+	position: fixed;
+	top: 50px;
+	left: 50px;
+	right: 50px;
+	bottom: 50px;
+	z-index: 3;
+	pointer-events: auto;
+	background-color: rgba(16,16,16,0.35); // semi-transparent to show viewer image
+	color: #fff;
+	padding: 1.5rem;
+	overflow: hidden; // contain the overlay; inner scrolls
+	border-radius: 6px;
+	@include vendor('backdrop-filter', 'blur(4px)');
+
+	.overlay-inner {
+		max-width: 60rem;
+		margin: 0 auto;
+		height: 100%;
+		padding: 0; // sections control their own padding
+		box-sizing: border-box;
+		overflow: auto; // scroll only the inner content
+
+		> section {
+			max-width: 100%;
+			box-sizing: border-box;
+			margin: 0 auto;
+			padding: 1rem 0; // vertical padding; horizontal spacing comes from overlay padding
+		}
+
+		section {
+			margin-bottom: 1.25rem;
+			h2 { margin-bottom: 0.5rem; }
+			p { color: rgba(255,255,255,0.95); }
+		}
+	}
+}
+
+/* Slide whole overlay in/out */
+#viewer-overlay {
+	// Start hidden by translating the overlay to the right (off-screen)
+	transform: translateX(100%);
+	@include vendor('transition', 'transform #{_duration(layout)} ease');
+
+	.overlay-inner {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		background: transparent;
+	}
+
+	&.open {
+		transform: translateX(0);
+	}
+
+	.overlay-close {
+		position: absolute;
+		top: 0.5rem;
+		left: 0.5rem;
+		width: 2.5rem;
+		height: 2.5rem;
+		background: rgba(0,0,0,0.25);
+		color: #fff;
+		border: 0;
+		border-radius: 4px;
+		cursor: pointer;
+		z-index: 4;
+		font-size: 1.25rem;
+		line-height: 2.5rem;
+	}
+}

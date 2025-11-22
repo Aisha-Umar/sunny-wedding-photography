@@ -1376,3 +1376,63 @@ input, select, textarea {
 			border-bottom: none;
 			/* text-align: right; */
 		}
+
+/* Viewer overlay (fixed inset so background image remains visible around it) */
+#viewer-overlay {
+	position: fixed;
+	top: 50px;
+	left: 50px;
+	right: 50px;
+	bottom: 50px;
+	z-index: 3;
+	pointer-events: auto;
+	background-color: rgba(16,16,16,0.35);
+	color: #fff;
+	padding: 1.5rem;
+	overflow: hidden; /* contain overlay; inner scrolls */
+	border-radius: 6px;
+	-webkit-backdrop-filter: blur(4px);
+	backdrop-filter: blur(4px);
+}
+
+#viewer-overlay .overlay-inner {
+	max-width: 60rem;
+	margin: 0 auto;
+	height: 100%;
+	padding: 0;
+	box-sizing: border-box;
+	overflow: auto; /* scroll inner content only */
+}
+
+#viewer-overlay .overlay-inner > section {
+	max-width: 100%;
+	box-sizing: border-box;
+	margin: 0 auto;
+	padding: 1rem 0;
+}
+
+/* Slide panel inside overlay */
+#viewer-overlay {
+	transform: translateX(100%);
+	transition: transform 0.75s ease;
+}
+
+#viewer-overlay.open {
+	transform: translateX(0);
+}
+
+#viewer-overlay .overlay-close {
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	background: rgba(0,0,0,0.25);
+	color: #fff;
+	border: 0;
+	border-radius: 4px;
+	cursor: pointer;
+	z-index: 4;
+	font-size: 1.25rem;
+	line-height: 2.5rem;
+}
