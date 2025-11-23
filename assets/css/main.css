@@ -885,8 +885,8 @@ input, select, textarea {
 	#header ul.icons li a .icon,
 	#header ul.icons li .icon:before,
 	#header .svg-icon svg {
-		color: #444 !important;
-		fill: #444 !important;
+		color: #aaa !important;
+		fill: #aaa !important;
 		opacity: 0.95 !important;
 	}
 
