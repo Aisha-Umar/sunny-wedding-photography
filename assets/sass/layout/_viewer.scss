@@ -274,8 +274,8 @@
   bottom: 50px;
   z-index: 3;
   pointer-events: auto;
-	// Backdrop alpha adjusted to 0.6 so the viewer image is visible but dimmed
-	background-color: rgba(0,0,0,0.6);
+		// Backdrop alpha adjusted to 0.45 for a lighter overlay
+		background-color: rgba(0,0,0,0.45);
   color: #fff;
   padding: 1.5rem;
   overflow: hidden; // contain overlay; inner scrolls
@@ -305,8 +305,8 @@
     transform: translateX(0);
   }
 
-  .overlay-inner {
-    max-width: 60rem;
+	.overlay-inner {
+		max-width: 72rem;
     margin: 0 auto;
     height: 100%;
 		padding: 0; // sections control their own padding

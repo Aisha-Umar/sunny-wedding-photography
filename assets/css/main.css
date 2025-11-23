@@ -1392,8 +1392,8 @@ input, select, textarea {
 	bottom: 50px;
 	z-index: 3;
 	pointer-events: auto;
-	/* Backdrop alpha set to 0.6 so the viewer image shows through but is dimmed */
-	background-color: rgba(0,0,0,0.6);
+	/* Backdrop alpha set to 0.45 for a lighter overlay */
+	background-color: rgba(0,0,0,0.45);
 	color: #fff;
 	padding: 1.5rem;
 	overflow: hidden;
@@ -1407,8 +1407,9 @@ input, select, textarea {
 	right: calc(22.5em + 50px);
 }
 
+/* Increased overlay width */
 #viewer-overlay .overlay-inner {
-	max-width: 60rem;
+	max-width: 72rem;
 	margin: 0 auto;
 	height: 100%;
 	padding: 0;
