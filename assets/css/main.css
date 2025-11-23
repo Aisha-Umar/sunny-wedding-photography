@@ -4,7 +4,31 @@
 	justify-content: center;
 	min-height: 100%;
 }
-@import url(fontawesome-all.min.css);
+/* Load Font Awesome from CDN (local vendor file appears empty/removed) */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+/* Self-hosted Font Awesome fallback (uses local files in assets/webfonts) */
+@font-face {
+	font-family: 'Font Awesome 5 Free';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../webfonts/fa-regular-400.woff2') format('woff2'),
+			 url('../webfonts/fa-regular-400.woff') format('woff');
+}
+@font-face {
+	font-family: 'Font Awesome 5 Free';
+	font-style: normal;
+	font-weight: 900;
+	src: url('../webfonts/fa-solid-900.woff2') format('woff2'),
+			 url('../webfonts/fa-solid-900.woff') format('woff');
+}
+@font-face {
+	font-family: 'Font Awesome 5 Brands';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../webfonts/fa-brands-400.woff2') format('woff2'),
+			 url('../webfonts/fa-brands-400.woff') format('woff');
+}
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
 
 /*
@@ -617,7 +641,7 @@ input, select, textarea {
 			text-rendering: auto;
 			line-height: 1;
 			text-transform: none !important;
-			font-family: 'Font Awesome 5 Free';
+			/* font-family will be set per-icon style (fab/fas/far) to avoid overriding brands */
 			font-weight: 400;
 		}
 
@@ -629,12 +653,22 @@ input, select, textarea {
 			line-height: inherit;
 		}
 
-		.icon.solid:before {
+		/* Support both template's .brands/.solid and Font Awesome 5 prefixes (fab/fas/far) */
+		.icon.solid:before,
+		.icon.fas:before {
+			font-family: 'Font Awesome 5 Free';
 			font-weight: 900;
 		}
 
-		.icon.brands:before {
+		.icon.brands:before,
+		.icon.fab:before {
 			font-family: 'Font Awesome 5 Brands';
+			font-weight: 400;
+		}
+
+		.icon.far:before {
+			font-family: 'Font Awesome 5 Free';
+			font-weight: 400;
 		}
 
 /* List */
@@ -832,6 +866,51 @@ input, select, textarea {
 			ul.icons li .icon:before {
 				font-size: 1.5rem;
 			}
+
+	/* Ensure social icons are visible on light background */
+	ul.icons li a,
+	ul.icons li .icon,
+	ul.icons li .icon:before {
+	    color: #555 !important;
+	    opacity: 0.9;
+	}
+
+	ul.icons li a:hover,
+	ul.icons li a:focus {
+	    color: #00D3B7 !important;
+	}
+
+	/* Stronger header-specific overrides to ensure icons are visible on white header */
+	#header ul.icons li a,
+	#header ul.icons li a .icon,
+	#header ul.icons li .icon:before,
+	#header .svg-icon svg {
+		color: #444 !important;
+		fill: #444 !important;
+		opacity: 0.95 !important;
+	}
+
+	#header ul.icons li a:hover,
+	#header ul.icons li a:focus,
+	#header .svg-icon:hover svg,
+	#header .svg-icon:focus svg {
+		color: #00D3B7 !important;
+		fill: #00D3B7 !important;
+	}
+
+	/* Inline SVG icon styles */
+	.svg-icon svg {
+		width: 1.5rem;
+		height: 1.5rem;
+		display: inline-block;
+		vertical-align: middle;
+		fill: #555;
+	}
+
+	.svg-icon:hover svg,
+	.svg-icon:focus svg {
+		fill: #00D3B7;
+	}
 
 /* Main */
 
@@ -1506,6 +1585,15 @@ input, select, textarea {
   font-size: 2.5rem;
   color: #e07a5f; /* accent wedding color */
   margin-bottom: 1rem;
+}
+
+/* SVG icon sizing for feature cards */
+.feature-card .svg-icon svg {
+	width: 2.5rem;
+	height: 2.5rem;
+	display: block;
+	margin: 0 auto 1rem auto;
+	fill: #e07a5f;
 }
 
 .feature-card h3 {
