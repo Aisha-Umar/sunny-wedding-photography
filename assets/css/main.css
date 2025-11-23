@@ -1558,6 +1558,173 @@ input, select, textarea {
 	white-space: nowrap;
 }
 
+/* On smaller screens increase overlay max-width by 50px */
+@media screen and (max-width: 980px) {
+	/* Reduce left/right margins by 25px each on smaller screens */
+	#viewer-overlay {
+		left: 25px !important;
+		right: calc(22.5em + 25px) !important;
+	}
+
+	#viewer-overlay .overlay-inner {
+		max-width: calc(72rem + 50px);
+	}
+
+	/* Compact mobile spacing: reduce paddings/gaps for smaller screens */
+	#header {
+		padding: 2.25em 1.25em 1rem 1.25em ;
+	}
+
+	#footer {
+		padding: 1.25em 1.25em ;
+	}
+
+	#viewer-overlay {
+		/* slightly tighter padding & corners on mobile */
+		padding: 0.75rem;
+		border-radius: 4px;
+	}
+
+	#viewer-overlay .overlay-inner {
+		padding: 0.5rem;
+	}
+
+	.features-grid {
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	.feature-card {
+		padding: 1rem;
+	}
+
+	/* Reduce contact form spacing */
+	.contact-form .fields {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.contact-form .field.half {
+		flex: 1 1 100% !important;
+	}
+
+	.contact-form .field {
+		margin-bottom: 0.75em;
+	}
+
+	.contact-form input,
+	.contact-form textarea {
+		padding: 0.6rem 0.8rem;
+	}
+
+	.contact-form button {
+		padding: 0.6rem 1rem;
+		font-size: 0.95rem;
+	}
+
+	#thumbnails {
+		padding: 0 0.5em;
+	}
+
+	ul.actions {
+		margin-left: -0.25em;
+	}
+}
+
+/* Mobile-specific layout for narrow screens (<768px) */
+@media screen and (max-width: 768px) {
+	/* Make #main the main landing page covering the whole screen */
+	#main {
+		position: fixed;
+		top: 0;
+		left: 0 !important;
+		right: 0 !important;
+		width: 100% !important;
+		height: 100% !important;
+		z-index: 10000;
+		overflow-y: auto;
+		background: rgba(255,255,255,0.98);
+		text-align: center;
+	}
+
+	/* Ensure viewer can cover whole screen when active (body.fullscreen) */
+	#viewer {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100% !important;
+		height: 100% !important;
+		z-index: 9000;
+	}
+
+	/* When fullscreen, hide the #main landing page so viewer shows through */
+	body.fullscreen #main {
+		visibility: hidden;
+		right: auto !important;
+		left: auto !important;
+		opacity: 0;
+	}
+
+	/* Mobile hamburger toggle styles */
+	#mobile-nav-toggle {
+		display: inline-block;
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		width: 3rem;
+		height: 3rem;
+		line-height: 2.6rem;
+		font-size: 1.5rem;
+		background: transparent;
+		border: 0;
+		color: #444;
+		cursor: pointer;
+		z-index: 10001;
+	}
+
+	/* Hide nav by default on mobile, show when body has .nav-open */
+	#header nav {
+		display: none;
+		width: 100%;
+		box-sizing: border-box;
+		margin-top: 0.75rem;
+	}
+
+	body.nav-open #header nav {
+		display: block;
+	}
+
+	#header nav ul {
+		display: block;
+		text-align: center;
+		padding: 0 1rem 1rem 1rem;
+	}
+
+	#header nav ul li {
+		display: block;
+		margin: 0.35rem 0;
+		text-align: center;
+	}
+
+	#header nav ul li a {
+		display: block;
+		padding: 0.35rem 0.5rem;
+	}
+
+	/* Slightly tighten overlay and header spacing on very small screens */
+	#viewer-overlay {
+		top: 40px;
+		bottom: 40px;
+		left: 12px !important;
+		right: 12px !important;
+		padding: 0.6rem;
+		/* Ensure overlay appears above the main landing page on mobile */
+		z-index: 10002;
+	}
+
+}
+
 .features-grid {
   display: flex;
   flex-wrap: wrap;
@@ -1694,5 +1861,12 @@ input, select, textarea {
 
 .major h2{
 	margin-bottom: 2rem !important;
+}
+
+/* On small screens move half-width fields (like email) to full width */
+@media screen and (max-width: 980px) {
+	.contact-form .field.half {
+		flex: 1 1 100% !important;
+	}
 }
 

@@ -833,3 +833,32 @@ var main = (function($) { var _ = {
 		}
 	});
 })(jQuery);
+// Mobile nav toggle: insert a hamburger button and wire open/close behavior
+(function($){
+	var $header = $('#header'),
+		$nav = $header.find('nav');
+
+	// Create and insert toggle if not present
+	if ($('#mobile-nav-toggle').length === 0) {
+		var $btn = $('<button id="mobile-nav-toggle" aria-label="Menu" aria-expanded="false">\u2630</button>');
+		$header.prepend($btn);
+
+		$btn.on('click', function(e){
+			e.preventDefault();
+			var isOpen = $('body').hasClass('nav-open');
+			if (isOpen) {
+				$('body').removeClass('nav-open');
+				$btn.attr('aria-expanded', 'false');
+			} else {
+				$('body').addClass('nav-open');
+				$btn.attr('aria-expanded', 'true');
+			}
+		});
+
+		// Keep mobile nav open when a nav link is clicked.
+		// User requested the nav should only be toggled by the hamburger button,
+		// so we intentionally do not close body.nav-open here.
+	}
+
+	// Ensure nav links still open overlay sections (existing handler above takes care of it)
+})(jQuery);
