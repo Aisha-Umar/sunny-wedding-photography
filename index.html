@@ -118,17 +118,150 @@
 				<div id="viewer-overlay" aria-hidden="true">
 					<div class="overlay-inner">
 						<section id="about-overlay">
-							<h2>About</h2>
-							<p>We are a small wedding photography studio capturing joyful, candid moments. Contact us to discuss packages and availability.</p>
+							<h2>About Me</h2>
+							<p>Hi, I’m Sunny, a wedding and lifestyle photographer based in Connecticut and serving Hartford and the surrounding
+								areas. Photography has been my passion for as long as I can remember, and nothing brings me more joy than capturing
+								the moments that mean the most to you.</p>
+								<p> I specialize in weddings, but I also love documenting other important milestones in your life, including
+								engagements, family celebrations, and meaningful everyday moments. My goal is to create images that feel natural,
+								emotional, and true to your story.</p>
+								<p>
+									With an eye for detail and a love for authentic connections, I focus on capturing the perfect shot in every setting,
+									from quiet intimate moments to joyful celebrations filled with energy. Every photograph is created with care,
+									creativity, and heart.
+								</p>
+							
+								<p>I would be honored to help you preserve the memories you want to remember forever.</p>
 						</section>
-						<section id="services-overlay">
-							<h2>Services</h2>
-							<p>Packages: Engagement, Full-Day Wedding, Elopement, and Albums. Custom add-ons available.</p>
+						<!-- <section id="services-overlay"> -->
+							<section id="services-overlay" class="wrapper style2 special">
+								<div class="inner">
+									<header class="major">
+										<h2>Services & Pricing</h2>
+										<p>Capturing your most important moments with care, creativity, and heart. Choose the package that fits your
+											special day.</p>
+									</header>
+							
+									<div class="features-grid">
+							
+										<!-- Classic Package -->
+										<div class="feature-card">
+											<span class="icon solid fa-heart"></span>
+											<h3>Classic Package</h3>
+											<p class="price">$1,200</p>
+											<ul>
+												<li>4 hours of coverage</li>
+												<li>1 photographer</li>
+												<li>150+ edited photos</li>
+												<li>Online gallery</li>
+												<li>Delivery within 2–3 weeks</li>
+											</ul>
+										</div>
+							
+										<!-- Premium Package -->
+										<div class="feature-card">
+											<span class="icon solid fa-star"></span>
+											<h3>Premium Package</h3>
+											<p class="price">$2,000</p>
+											<ul>
+												<li>8 hours of coverage</li>
+												<li>1 photographer</li>
+												<li>300+ edited photos</li>
+												<li>Online gallery & USB drive</li>
+												<li>Sneak-peek in 48 hours</li>
+												<li>Delivery within 3 weeks</li>
+											</ul>
+										</div>
+							
+										<!-- Signature Package -->
+										<div class="feature-card">
+											<span class="icon solid fa-gem"></span>
+											<h3>Signature Package</h3>
+											<p class="price">$2,800</p>
+											<ul>
+												<li>Full-day coverage (up to 12 hours)</li>
+												<li>1 photographer</li>
+												<li>500+ edited photos</li>
+												<li>Online gallery & USB drive</li>
+												<li>Engagement photoshoot</li>
+												<li>Custom photo album (20 pages)</li>
+												<li>Sneak-peek in 24 hours</li>
+												<li>Delivery within 3–4 weeks</li>
+											</ul>
+										</div>
+							
+									</div>
+							
+									<!-- Additional Services -->
+									<div class="extra-services">
+										<h3>Engagement Sessions — $300</h3>
+										<p>Relaxed, fun sessions perfect for Save-the-Dates or personal keepsakes.</p>
+										<ul>
+											<li>1-hour session</li>
+											<li>20+ edited photos</li>
+											<li>One location of your choice</li>
+											<li>Online gallery</li>
+										</ul>
+							
+										<h3>Event Photography — $150/hour</h3>
+										<p>Birthdays, anniversaries, and family gatherings. Minimum 2 hours.</p>
+										<ul>
+											<li>All best photos edited</li>
+											<li>Online gallery</li>
+											<li>Delivery within 1 week</li>
+										</ul>
+							
+										<h3>Add-Ons</h3>
+										<ul>
+											<li>Additional hour of coverage — $150/hour</li>
+											<li>Second photographer — $300</li>
+											<li>Extra photo album — $150</li>
+											<li>Prints — starting at $10</li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+						<!-- <section id="contact-overlay"> -->
+						<section id="contact-overlay" class="wrapper style2 special">
+							<div class="inner">
+								<header class="major">
+									<h2>Contact Me</h2>
+									<p>Have a question or want to book a session? Send me a message and I’ll get back to you as soon as
+										possible.</p>
+								</header>
+						
+								<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+									<!-- Hidden input for Netlify bot detection -->
+									<input type="hidden" name="form-name" value="contact">
+									<p class="hidden">
+										<label>Don’t fill this out if you’re human: <input name="bot-field"></label>
+									</p>
+						
+									<div class="fields">
+										<div class="field half">
+											<label for="name">Name</label>
+											<input type="text" name="name" id="name" placeholder="Your Name" required>
+										</div>
+						
+										<div class="field half">
+											<label for="email">Email</label>
+											<input type="email" name="email" id="email" placeholder="you@example.com" required>
+										</div>
+						
+										<div class="field">
+											<label for="message">Message</label>
+											<textarea name="message" id="message" rows="6" placeholder="Your message here…" required></textarea>
+										</div>
+									</div>
+						
+									<ul class="actions">
+										<li><button type="submit" class="button primary">Send Message</button></li>
+									</ul>
+								</form>
+							</div>
 						</section>
-						<section id="contact-overlay">
-							<h2>Contact</h2>
-							<p>Email: hello@example.com<br/>Phone: (555) 555-5555</p>
-						</section>
+
 					</div>
 					<button id="viewer-overlay-close" class="overlay-close" aria-label="Close overlay">Close</button>
 				</div>

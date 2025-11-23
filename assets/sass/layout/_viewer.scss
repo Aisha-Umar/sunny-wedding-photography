@@ -274,7 +274,8 @@
   bottom: 50px;
   z-index: 3;
   pointer-events: auto;
-  background-color: rgba(16,16,16,0.35);
+	// Backdrop alpha adjusted to 0.6 so the viewer image is visible but dimmed
+	background-color: rgba(0,0,0,0.6);
   color: #fff;
   padding: 1.5rem;
   overflow: hidden; // contain overlay; inner scrolls
@@ -308,7 +309,9 @@
     max-width: 60rem;
     margin: 0 auto;
     height: 100%;
-    padding: 0; // sections control their own padding
+		padding: 0; // sections control their own padding
+		// Slightly larger base font for readability inside overlay
+		font-size: 1.125rem;
     box-sizing: border-box;
     overflow: auto; // scroll only the inner content
 
@@ -319,11 +322,11 @@
       padding: 1rem 0; // vertical padding; horizontal spacing comes from overlay padding
     }
 
-    section {
-      margin-bottom: 1.25rem;
-      h2 { margin-bottom: 0.5rem; }
-      p { color: rgba(255,255,255,0.95); }
-    }
+			section {
+				margin-bottom: 1.25rem;
+				h2 { margin-bottom: 0.5rem; color: #fff; text-align: center; font-size: 1.75rem; }
+				p { color: rgba(255,255,255,0.95); font-size: 1.0625rem; }
+			}
   }
 
   // On smaller screens use the alternate main width

@@ -1,3 +1,9 @@
+#contact-overlay {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-height: 100%;
+}
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
 
@@ -1386,7 +1392,8 @@ input, select, textarea {
 	bottom: 50px;
 	z-index: 3;
 	pointer-events: auto;
-	background-color: rgba(16,16,16,0.35);
+	/* Backdrop alpha set to 0.6 so the viewer image shows through but is dimmed */
+	background-color: rgba(0,0,0,0.6);
 	color: #fff;
 	padding: 1.5rem;
 	overflow: hidden;
@@ -1405,6 +1412,8 @@ input, select, textarea {
 	margin: 0 auto;
 	height: 100%;
 	padding: 0;
+	/* Slightly larger base font for readability inside overlay */
+	font-size: 1.125rem;
 	box-sizing: border-box;
 	overflow: auto;
 }
@@ -1414,6 +1423,18 @@ input, select, textarea {
 	box-sizing: border-box;
 	margin: 0 auto;
 	padding: 1rem 0;
+}
+
+#viewer-overlay .overlay-inner > section h2 {
+	color: #fff;
+	text-align: center;
+	margin-bottom: 0.5rem;
+	font-size: 1.75rem;
+}
+
+#viewer-overlay .overlay-inner > section p {
+	color: rgba(255,255,255,0.95);
+	font-size: 1.0625rem;
 }
 
 /* Slide panel inside overlay: closed state fully hidden (translate + opacity) */
@@ -1439,7 +1460,7 @@ input, select, textarea {
 	position: absolute;
 	top: 0.5rem;
 	left: 0.5rem;
-	width: 2.5rem;
+	min-width: 2.5rem;
 	height: 2.5rem;
 	background: rgba(0,0,0,0.25);
 	color: #fff;
@@ -1447,6 +1468,151 @@ input, select, textarea {
 	border-radius: 4px;
 	cursor: pointer;
 	z-index: 4;
-	font-size: 1.25rem;
+	font-size: 1.1rem;
 	line-height: 2.5rem;
+	padding: 0 1.1rem;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	white-space: nowrap;
 }
+
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.feature-card {
+  background: #fffaf6; /* soft warm color */
+  border-radius: 12px;
+  padding: 1.8rem 1.5rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.feature-card .icon {
+  font-size: 2.5rem;
+  color: #e07a5f; /* accent wedding color */
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.feature-card .price {
+  font-weight: bold;
+  color: #e07a5f !important;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  color: #555;
+}
+
+.feature-card ul li {
+  padding: 0.3rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.feature-card ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #e07a5f;
+}
+
+.extra-services {
+  margin-top: 3rem;
+}
+
+.extra-services h3 {
+  color: #e07a5f;
+  margin-top: 1.5rem;
+}
+
+.extra-services p {
+  margin-bottom: 0.5rem;
+}
+
+.extra-services ul {
+  list-style: none;
+  padding-left: 1.5rem;
+}
+
+.extra-services ul li::before {
+  content: "✔";
+  margin-right: 0.5rem;
+  color: #e07a5f;
+}
+
+/*CONTACT FORM*/
+.contact-form .fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.contact-form .field.half {
+  flex: 1 1 45%;
+}
+
+.contact-form .field {
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form label {
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+  /* color: #333; */
+  color:#fff;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.contact-form button {
+  background-color: #ca8a78;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #d96c55;
+}
+
+.major h2{
+	margin-bottom: 2rem !important;
+}
+
