@@ -113,7 +113,27 @@
 
 			</div>
 
-		<!-- Scripts -->
+
+				<!-- Viewer overlay (inserted before scripts so main.js can bind handlers) -->
+				<div id="viewer-overlay" aria-hidden="true">
+					<div class="overlay-inner">
+						<section id="about-overlay">
+							<h2>About</h2>
+							<p>We are a small wedding photography studio capturing joyful, candid moments. Contact us to discuss packages and availability.</p>
+						</section>
+						<section id="services-overlay">
+							<h2>Services</h2>
+							<p>Packages: Engagement, Full-Day Wedding, Elopement, and Albums. Custom add-ons available.</p>
+						</section>
+						<section id="contact-overlay">
+							<h2>Contact</h2>
+							<p>Email: hello@example.com<br/>Phone: (555) 555-5555</p>
+						</section>
+					</div>
+					<button id="viewer-overlay-close" class="overlay-close" aria-label="Close overlay">Close</button>
+				</div>
+
+				<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>

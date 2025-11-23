@@ -749,19 +749,46 @@ var main = (function($) { var _ = {
 (function($){
 	var $overlay = $('#viewer-overlay'),
 		$inner = $overlay.find('.overlay-inner'),
-		$close = $('#viewer-overlay-close');
+		$close = $('#viewer-overlay-close'),
+		lastTrigger = null;
 
-	function openOverlay(name) {
+	function openOverlay(name, $trigger) {
+		// Remember the trigger to restore focus on close
+		if ($trigger && $trigger.length) lastTrigger = $trigger;
+
 		// Hide all sections, show only the requested one
 		$inner.children('section').hide();
-		$inner.find('#' + name + '-overlay').show();
+		var $section = $inner.find('#' + name + '-overlay');
+		if ($section.length) {
+			$section.show();
+		}
+
+		// Make overlay visible and focus close for accessibility
 		$overlay.addClass('open').attr('aria-hidden','false');
-		// move focus to overlay close for accessibility
 		$close.focus();
 	}
 
 	function closeOverlay() {
-		$overlay.removeClass('open').attr('aria-hidden','true');
+		// If not open, nothing to do.
+		if (!$overlay.hasClass('open')) return;
+
+		// Start closing animation by removing the open class.
+		// Don't hide content immediately — wait for the transition to finish
+		$overlay.removeClass('open');
+
+		// After the CSS transition ends, hide sections and restore ARIA/focus.
+		$overlay.one('transitionend webkitTransitionEnd oTransitionEnd', function(e){
+			// Only act when transform or opacity transition finished.
+			// Hide sections so they aren't visible when overlay is reopened.
+			$inner.children('section').hide();
+			$overlay.attr('aria-hidden','true');
+
+			// Restore focus to the triggering element if present
+			if (lastTrigger && lastTrigger.length) {
+				try { lastTrigger.focus(); } catch (err) {}
+				lastTrigger = null;
+			}
+		});
 	}
 
 	// Header nav clicks
@@ -772,7 +799,7 @@ var main = (function($) { var _ = {
 			// Only handle known sections
 			if (name === 'about' || name === 'services' || name === 'contact') {
 				e.preventDefault();
-				openOverlay(name);
+				openOverlay(name, $(this));
 			}
 		}
 	});

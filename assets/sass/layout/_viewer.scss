@@ -268,41 +268,76 @@
 
 /* Viewer overlay (fixed inset so background image remains visible around it) */
 #viewer-overlay {
-	position: fixed;
-	top: 50px;
-	left: 50px;
-	right: 50px;
-	bottom: 50px;
-	z-index: 3;
-	pointer-events: auto;
-	background-color: rgba(16,16,16,0.35); // semi-transparent to show viewer image
-	color: #fff;
-	padding: 1.5rem;
-	overflow: hidden; // contain the overlay; inner scrolls
-	border-radius: 6px;
-	@include vendor('backdrop-filter', 'blur(4px)');
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  bottom: 50px;
+  z-index: 3;
+  pointer-events: auto;
+  background-color: rgba(16,16,16,0.35);
+  color: #fff;
+  padding: 1.5rem;
+  overflow: hidden; // contain overlay; inner scrolls
+  border-radius: 6px;
+  @include vendor(backdrop-filter, blur(4px));
 
-	.overlay-inner {
-		max-width: 60rem;
-		margin: 0 auto;
-		height: 100%;
-		padding: 0; // sections control their own padding
-		box-sizing: border-box;
-		overflow: auto; // scroll only the inner content
-
-		> section {
-			max-width: 100%;
-			box-sizing: border-box;
-			margin: 0 auto;
-			padding: 1rem 0; // vertical padding; horizontal spacing comes from overlay padding
+		// Position overlay inside the viewer area so it centers over the viewer image.
+		// When the main side panel is on the right, the viewer occupies 100% - main width
+		// so we set left:50px and right: main width + 50px so left/right insets inside
+		// the viewer are equal (both 50px). If main is on the left, mirror the values.
+		@if _misc(main-side) == 'right' {
+			left: 50px;
+			right: calc(#{_size(main)} + 50px);
+			// Closed: translate the overlay completely to the right of the viewer area
+			transform: translateX(110%);
+		} @else {
+			left: calc(#{_size(main)} + 50px);
+			right: 50px;
+			// Closed: translate the overlay completely to the left of the viewer area
+			transform: translateX(-110%);
 		}
 
-		section {
-			margin-bottom: 1.25rem;
-			h2 { margin-bottom: 0.5rem; }
-			p { color: rgba(255,255,255,0.95); }
-		}
-	}
+		// Slightly longer duration and a small delay for a more pronounced slide.
+		transition: transform 0.65s ease-in-out 0.05s, opacity 0.65s ease-in-out 0.05s;
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  .overlay-inner {
+    max-width: 60rem;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0; // sections control their own padding
+    box-sizing: border-box;
+    overflow: auto; // scroll only the inner content
+
+    > section {
+      max-width: 100%;
+      box-sizing: border-box;
+      margin: 0 auto;
+      padding: 1rem 0; // vertical padding; horizontal spacing comes from overlay padding
+    }
+
+    section {
+      margin-bottom: 1.25rem;
+      h2 { margin-bottom: 0.5rem; }
+      p { color: rgba(255,255,255,0.95); }
+    }
+  }
+
+  // On smaller screens use the alternate main width
+  @include breakpoint('<=large') {
+    @if _misc(main-side) == 'right' {
+      right: calc(#{_size(main-alt)} + 50px);
+      transform: translateX(calc(100% + #{_size(main-alt)} + 50px));
+    } @else {
+      left: calc(#{_size(main-alt)} + 50px);
+      right: auto;
+      transform: translateX(calc(-100% - #{_size(main-alt)} - 50px));
+    }
+  }
+
 }
 
 /* Slide whole overlay in/out */
