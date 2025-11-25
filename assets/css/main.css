@@ -1721,6 +1721,7 @@ input, select, textarea {
 		padding: 0.6rem;
 		/* Ensure overlay appears above the main landing page on mobile */
 		z-index: 10002;
+		background-color: rgba(0, 0, 0, 0.65);
 	}
 
 }
