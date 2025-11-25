@@ -868,12 +868,12 @@ input, select, textarea {
 			}
 
 	/* Ensure social icons are visible on light background */
-	ul.icons li a,
+	/* ul.icons li a,
 	ul.icons li .icon,
 	ul.icons li .icon:before {
-	    color: #555 !important;
+	    color: #ccc !important;
 	    opacity: 0.9;
-	}
+	} */
 
 	ul.icons li a:hover,
 	ul.icons li a:focus {
@@ -881,14 +881,14 @@ input, select, textarea {
 	}
 
 	/* Stronger header-specific overrides to ensure icons are visible on white header */
-	#header ul.icons li a,
+	/* #header ul.icons li a,
 	#header ul.icons li a .icon,
 	#header ul.icons li .icon:before,
 	#header .svg-icon svg {
-		color: #444 !important;
-		fill: #444 !important;
+		color: #ccc !important;
+		fill: #ccc !important;
 		opacity: 0.95 !important;
-	}
+	} */
 
 	#header ul.icons li a:hover,
 	#header ul.icons li a:focus,
@@ -1868,5 +1868,102 @@ input, select, textarea {
 	.contact-form .field.half {
 		flex: 1 1 100% !important;
 	}
+}
+
+
+/* #header .icons a:before {
+    color: #ccc !important;
+    opacity: 1 !important;
+	 background: red !important;
+} */
+
+
+/* target both pseudo-element syntaxes and hover */
+#header .icons a::before,
+#header .icons a:before {
+  color: #ccc !important;
+  opacity: 1 !important;
+}
+
+/* force hover color */
+#header .icons a:hover::before,
+#header .icons a:hover:before {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+/* very specific rules for each icon if needed */
+#header .icons a.icon.brands.fa-instagram::before,
+#header .icons a.icon.brands.fa-twitter::before,
+#header .icons a.icon.fa-envelope::before {
+  color: #ccc !important;
+}
+
+
+/* default color for all social icons */
+#header .icons a {
+  color: #ccc !important; /* light gray */
+}
+
+/* hover color */
+#header .icons a:hover {
+  color: #fff !important; /* white on hover */
+}
+
+/* Default color for all social icons */
+#header .icons a i {
+  color: #999; /* darker gray */
+  font-size: 1.2em; /* slightly bigger overall */
+  transition: color 0.3s ease; /* smooth hover transition */
+}
+
+/* Hover effect for all icons */
+#header .icons a:hover i {
+  color: #00D3B7; /* teal hover color */
+}
+
+/* Make the envelope icon bigger */
+#header .icons a .fa-envelope {
+  font-size: 1.5em; /* larger than other icons */
+  color: #999; /* match default gray */
+}
+
+/* Hover effect for envelope icon */
+#header .icons a:hover .fa-envelope {
+  color: #00D3B7; /* same hover color */
+}
+
+
+/* Default color for all social icons */
+#header .icons a i {
+  color: #bbb; /* lighter gray */
+  font-size: 1.2em; /* slightly bigger overall */
+  transition: color 0.3s ease, transform 0.2s ease; /* smooth hover transition */
+}
+
+/* Hover effect for all icons */
+#header .icons a:hover i {
+  color: #00D3B7; /* teal hover color */
+  transform: scale(1.2); /* slight pop effect */
+}
+
+/* Make the envelope icon bigger */
+#header .icons a .fa-envelope {
+  font-size: 1.2em; /* larger than other icons */
+  color: #bbb; /* match default color */
+}
+
+/* Hover effect for envelope icon */
+#header .icons a:hover .fa-envelope {
+  color: #00D3B7;
+}
+
+/* Hide text labels */
+#header .icons a .label {
+  display: none;
+}
+
+#header nav a:hover {
+  color: #00D3B7;
 }
 
