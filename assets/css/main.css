@@ -1992,4 +1992,8 @@ input, select, textarea {
 	}
 }
 
+#header .logo img{
+	width:200px;
+	height:auto;
+}
 
