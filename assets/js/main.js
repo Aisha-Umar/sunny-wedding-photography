@@ -416,6 +416,9 @@ var main = (function($) { var _ = {
 							loaded: false
 						};
 
+					// Remove active class if present
+    					// $this.removeClass('active');
+
 					// Parent.
 						$this.attr('tabIndex', '-1');
 
@@ -454,6 +457,14 @@ var main = (function($) { var _ = {
 								s.loaded = true;
 
 						}
+
+					// 	 if (_.settings.preload) {
+               		// 		$('<img src="' + s.url + '" />').on("load", function () {
+                 	// 		s.$slideImage.css("background-image", "url(" + s.url + ")");
+                 	// 		s.loaded = true;
+                 	// 		s.$slide.addClass("loaded");
+               		// 	});
+             		// }
 
 					// Add to slides array.
 						_.slides.push(s);
